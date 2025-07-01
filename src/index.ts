@@ -1,30 +1,17 @@
+// src/index.ts
 import "dotenv/config";
-
-
-import OpenAI from "openai";
-import {createAssistant} from "./openai/createAssistant";
-import {createRun} from "./openai/createRun";
-import { createThread } from "./openai/createThread";
-import { performRun} from "./openai/performRun";
+import { runGeminiAssistant } from "./llm/runGeminiAssistant";
 
 
 async function main() {
+  const message = "Hello, Olujimi. What is the balance of 0xAbC123456789...?";
+
   try {
-    const client = new OpenAI({
-      apiKey: process.env.OPEN_API_KEY!,
-    });
-
-    const message = "Hello, Olujimi";
-
-    const assistant = await createAssistant(client);
-    const thread = await createThread(client, message);
-    const run = await createRun(client, thread, assistant.id);
-    const result = await performRun(run, client, thread);
-
+    const result = await runGeminiAssistant(message);
     console.log("🧠 Final response:", result);
   } catch (err) {
-    console.error("❌ Error running assistant:", err);
+    console.error("❌ Error running Gemini assistant:", err);
   }
 }
 
-main()
+main();

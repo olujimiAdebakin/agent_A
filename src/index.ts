@@ -10,7 +10,10 @@ import { performRun} from "./openai/performRun";
 
 async function main() {
   try {
-    const client = new OpenAI();
+    const client = new OpenAI({
+      apiKey: process.env.OPEN_API_KEY!,
+    });
+
     const message = "Hello, Olujimi";
 
     const assistant = await createAssistant(client);

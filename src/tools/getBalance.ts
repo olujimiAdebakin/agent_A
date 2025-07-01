@@ -1,7 +1,8 @@
 import { Address } from "viem";
-import { createViemPublicClient } from "../viem/createViemPublicClient.js";
+// import { createViemPublicClient } from "../viem/createViemPublicClient";
 import { ToolConfig } from "./allTools.js";
 import { formatEther } from "viem";
+import { createViemPublicClient } from "../viem/createViemPublicClient.js";
 
 interface GetBalanceArgs {
   wallet: Address;
